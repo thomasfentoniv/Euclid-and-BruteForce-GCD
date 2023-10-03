@@ -17,36 +17,43 @@ function gcd2(a, b) {
   if (a === 0) return b;
   if (b === 0) return a;
 
-  // Find divisors for a
+  // Initializing arrays to store divisors
   let divA = [1, a];
+  let divB = [1, b];
+
+  // Array to store common divisors of a and b
+  let common = [];
+
+  // Find divisors for 'a'
   for (let i = 2; i < a; i++) {
     if (a % i === 0) {
       divA.push(i);
     }
   }
 
-  // Find divisors for b
-  let divB = [1, b];
+  // Find divisors for 'b'
   for (let i = 2; i < b; i++) {
     if (b % i === 0) {
       divB.push(i);
     }
   }
 
-  // Find common divisors
-  let common = [];
-  for (let num of divA) {
-    if (divB.includes(num)) {
-      common.push(num);
+  // Populate the array with common divisors
+  for (let n of divA) {
+    if (divB.includes(n)) {
+      common.push(n);
     }
   }
 
   // Find the largest common divisor
-  let largest = Math.min(...common);
-  for (let num of common) {
-    if (num > largest) {
-      largest = num;
+  let largest = Number.MIN_SAFE_INTEGER;
+  for (let n of common) {
+    if (n > largest) {
+      largest = n;
     }
   }
+
   return largest;
 }
+
+module.exports = { gcd1, gcd2 };
